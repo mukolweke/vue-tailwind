@@ -1,28 +1,99 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app" class="min-h-screen w-screen bg-gray-200 flex items-center justify-center">
+        <div class="w-full max-w-md text-center">
+            <p class="mb-2 text-gray-700 font-semibold font-sans tracking-wide">List 1</p>
+            <draggable tag="ul"
+                       ghost-class="moving-card"
+                       group="all-users"
+                       :list="users"
+                       :animation="200">
+                <user-card v-for="user in users"
+                           :user="user"
+                           :key="user.id"
+                           @on-edit="onEdit"
+                           @on-delete="onDelete">
+                </user-card>
+            </draggable>
+        </div>
+
+        <div class="w-full max-w-md ml-12 text-center">
+            <p class="mb-2 text-gray-700 font-semibold font-sans tracking-wide">List 2</p>
+            <draggable tag="ul"
+                       ghost-class="moving-card"
+                       group="all-users"
+                       :list="newUsers"
+                       :animation="200">
+                <user-card v-for="user in newUsers"
+                           :user="user"
+                           :key="user.id"
+                           @on-edit="onEdit"
+                           @on-delete="onDelete">
+                </user-card>
+            </draggable>
+        </div>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import Draggable from 'vuedraggable'
+    import UserCard from './components/UserCard';
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        name: "App",
+
+        components: {
+            Draggable,
+            UserCard
+        },
+
+        data() {
+            return {
+                users: [
+                    {
+                        id: 1,
+                        name: "Adrian Schubert",
+                        avatar: "https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png"
+                    },
+                    {
+                        id: 2,
+                        name: "Violet Gates",
+                        avatar: "https://pickaface.net/gallery/avatar/freud51c8b3f65e7dc.png"
+                    },
+                    {
+                        id: 3,
+                        name: "Steve Jobs",
+                        avatar: "https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png"
+                    },
+                    {
+                        id: 4,
+                        name: "Yassine Smith",
+                        avatar: "https://pickaface.net/gallery/avatar/unr_yassine_191124_2012_3gngr.png"
+                    },
+                    {
+                        id: 5,
+                        name: "Senior Saez",
+                        avatar: "https://pickaface.net/gallery/avatar/elmedinilla541c03412955c.png"
+                    }
+                ],
+                newUsers: []
+            }
+        },
+
+        methods: {
+            onEdit(user) {
+                alert(`Editing ${user.name}`);
+            },
+
+            onDelete(user) {
+                alert(`Deleting ${user.name}`);
+            }
+        }
+
+    }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    .moving-card {
+        @apply opacity-50 bg-gray-100 border border-blue-500;
+    }
 </style>

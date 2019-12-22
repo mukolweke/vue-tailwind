@@ -1,4 +1,4 @@
-# vue-tailwind
+# VUE TAILWIND
 
 ## Project setup
 ```
@@ -10,10 +10,14 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Project
 ```
-npm run build
+Learn Tailwind Intergration with tailwind,
+vue draggable, vue feather icon
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Source
+```
+[Binarcode](https://www.binarcode.com/blog/building-animated-draggable-interfaces-with-vuejs-and-tailwind/).
+```
+
